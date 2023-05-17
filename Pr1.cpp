@@ -1,9 +1,9 @@
 #include "mpi.h"
 #include<stdio.h>
 #include<string.h>
+//Parallel programming
 int main(int argc,char*argv[])
-{
-	
+{	
 	char message[24];
 	int myrank;
 	MPI_Status status;
@@ -14,13 +14,11 @@ int main(int argc,char*argv[])
 	{
 		strcpy(message,"Hi,Parallel Programmer!");
 		MPI_Send(&message,24,MPI_CHAR,1,TAG,MPI_COMM_WORLD);
-
 	}
 	else
 	{
         MPI_Recv(&message,24,MPI_CHAR,0,TAG,MPI_COMM_WORLD,&status);  
 		printf("received:%s\n",message);
-
 	}
 MPI_Finalize();
 return 0;
